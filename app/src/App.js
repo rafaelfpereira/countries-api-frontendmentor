@@ -12,7 +12,16 @@ function App() {
 
       <section className="filter">
         <input type="text" />
-        <select />
+        <select>
+          <option selected disabled>
+            Filter by Region
+          </option>
+          <option value="Africa">Africa</option>
+          <option value="America">America</option>
+          <option value="Asia">Asia</option>
+          <option value="Europe">Europe</option>
+          <option value="Oceania">Oceania</option>
+        </select>
       </section>
 
       <section className="content">
@@ -22,6 +31,20 @@ function App() {
           region="Europe"
           capital="Berlin"
           flagUrl={"https://flagcdn.com/de.svg"}
+        />
+        <CountryCard
+          name="Germany"
+          population={81770900}
+          region="Europe"
+          capital="Berlin"
+          flagUrl={"https://flagcdn.com/br.svg"}
+        />
+        <CountryCard
+          name="Germany"
+          population={81770900}
+          region="Europe"
+          capital="Berlin"
+          flagUrl={"https://flagcdn.com/pt.svg"}
         />
       </section>
     </main>
