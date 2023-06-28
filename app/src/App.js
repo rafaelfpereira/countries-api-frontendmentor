@@ -2,6 +2,7 @@
 // React imports > components > styles > types
 import { useState, useEffect } from "react";
 import { CountryCard, TextInput, SelectInput, Icon } from "./components";
+
 import data from "./mocks/data.json";
 import "./App.scss";
 
@@ -31,15 +32,33 @@ function App() {
   };
 
   useEffect(() => {
-    if (
-      window.matchMedia &&
-      window.matchMedia("(prefers-color-scheme: dark)").matches
-    ) {
-      setMode("dark");
-    } else {
+    if (localStorage.getItem("theme")) {
+      setMode(localStorage.getItem("theme"));
+    } else if (!window.matchMedia) {
+      return;
+    } else if (window.matchMedia("(prefers-color-scheme: light)").matches) {
       setMode("light");
+    } else {
+      setMode("dark");
     }
   }, []);
+
+  useEffect(() => {
+    console.log({ mode });
+    document.documentElement.setAttribute("data-theme", mode);
+  }, [mode]);
+
+  const toggleTheme = () => {
+    if (mode === "dark") {
+      localStorage.setItem("theme", "light");
+      setMode("light");
+    } else {
+      localStorage.setItem("theme", "dark");
+      setMode("dark");
+    }
+
+    console.log(localStorage.getItem("theme"));
+  };
 
   return (
     <main className="App">
@@ -48,7 +67,7 @@ function App() {
 
         <button
           className="theme-selector theme-selector__container"
-          onClick={() => setMode(mode === "dark" ? "light" : "dark")}
+          onClick={toggleTheme}
         >
           <Icon name={uiMode[mode].icon} width={16} />
           <span>{uiMode[mode].label}</span>
