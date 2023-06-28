@@ -32,6 +32,9 @@ function App() {
   };
 
   useEffect(() => {
+    // data fetching
+
+    // theme logic
     if (localStorage.getItem("theme")) {
       setMode(localStorage.getItem("theme"));
     } else if (!window.matchMedia) {
