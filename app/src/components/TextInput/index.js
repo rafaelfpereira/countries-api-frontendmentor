@@ -1,15 +1,10 @@
+import { Icon } from "../";
 import "./styles.scss";
 
 const TextInput = ({ value, onChange, placeholder, leftIcon }) => {
   return (
     <label className="text-input text-input__container">
-      {!!leftIcon && (
-        <img
-          className="text-input__left-icon"
-          alt="magnifying glass"
-          src={leftIcon}
-        />
-      )}
+      {!!leftIcon && typeof leftIcon === "string" && <Icon name={leftIcon} />}
       <input
         type="text"
         className="text-input__input-field"
