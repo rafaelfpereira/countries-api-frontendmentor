@@ -20,7 +20,7 @@ const SelectInput = ({
           key={`${index}${option.value}`} // that's perfect, defining the key as unique here is super performatic.
           className="select-input__option"
           value={option.value}
-          selected={selectedOption === option.value}
+          // selected={selectedOption === option.value}
         >
           {option.label}
         </option>
