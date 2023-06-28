@@ -1,7 +1,7 @@
 // Good job here. Keep imports organized in the same order helps to find thigs easier when we have too much imports
 // React imports > components > styles > types
-import { useState } from "react";
-import { CountryCard, TextInput, SelectInput } from "./components";
+import { useState, useEffect } from "react";
+import { CountryCard, TextInput, SelectInput, Icon } from "./components";
 import data from "./mocks/data.json";
 import "./App.scss";
 
@@ -17,13 +17,42 @@ const mockSelectOptions = [
 function App() {
   const [filter, setFilter] = useState("");
   const [selectedOption, setSelectedOption] = useState("");
-  console.log(data);
+  const [mode, setMode] = useState("dark");
+
+  const uiMode = {
+    light: {
+      icon: "sun",
+      label: "Light Mode",
+    },
+    dark: {
+      icon: "moon",
+      label: "Dark Mode",
+    },
+  };
+
+  useEffect(() => {
+    if (
+      window.matchMedia &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches
+    ) {
+      setMode("dark");
+    } else {
+      setMode("light");
+    }
+  }, []);
 
   return (
     <main className="App">
       <header>
         <h1>Where in the world?</h1>
-        <div>dark mode</div>
+
+        <button
+          className="theme-selector theme-selector__container"
+          onClick={() => setMode(mode === "dark" ? "light" : "dark")}
+        >
+          <Icon name={uiMode[mode].icon} width={16} />
+          <span>{uiMode[mode].label}</span>
+        </button>
       </header>
 
       <section className="filter">
@@ -31,7 +60,7 @@ function App() {
           value={filter}
           onChange={(e) => setFilter(e.target.value)}
           placeholder="Search for a country..."
-          leftIcon="/icons/magnifying-glass.svg"
+          leftIcon="magnifying-glass"
         />
         <SelectInput
           options={mockSelectOptions}

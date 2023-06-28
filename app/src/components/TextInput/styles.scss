@@ -8,12 +8,8 @@
   &__container {
     padding: 1rem 2rem;
     display: flex;
+    align-items: center;
     gap: 1rem;
-  }
-
-  &__left-icon {
-    width: 24px;
-    fill: var(--white);
   }
 
   &__input-field {
@@ -28,7 +24,7 @@
       outline: none;
     }
 
-    &::placeholder {
+    ::placeholder {
       color: var(--secondary-text-color);
     }
   }

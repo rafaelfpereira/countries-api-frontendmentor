@@ -11,6 +11,19 @@
     align-items: center;
     padding-inline: 4rem;
     background: var(--secondary-background-color);
+
+    .theme-selector {
+      background: transparent;
+      border: none;
+      padding: 0.5rem;
+      color: var(--primary-text-color);
+
+      &__container {
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+      }
+    }
   }
 
   .filter {
