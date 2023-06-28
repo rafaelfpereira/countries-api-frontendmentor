@@ -2,13 +2,8 @@
   border: none;
   border-radius: 4px;
 
-  background: var(--dark-blue);
-  color: var(--white);
-
-  @media (prefers-color-scheme: light) {
-    background: var(--light-gray);
-    color: var(--darker-blue);
-  }
+  background: var(--secondary-background-color);
+  color: var(--primary-text-color);
 
   &__container {
     padding: 1rem 2rem;

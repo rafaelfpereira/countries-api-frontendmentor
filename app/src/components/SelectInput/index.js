@@ -1,11 +1,6 @@
 import "./styles.scss";
 
-const SelectInput = ({
-  selectedOption,
-  onChange,
-  options = [],
-  defaultValue,
-}) => {
+const SelectInput = ({ defaultValue, onChange, options = [] }) => {
   return (
     <select
       className="select-input select-input__container"
@@ -17,10 +12,9 @@ const SelectInput = ({
       </option>
       {options.map((option, index) => (
         <option
-          key={`${index}${option.value}`} // that's perfect, defining the key as unique here is super performatic.
+          key={`select-option${index}${option.value}`}
           className="select-input__option"
           value={option.value}
-          // selected={selectedOption === option.value}
         >
           {option.label}
         </option>

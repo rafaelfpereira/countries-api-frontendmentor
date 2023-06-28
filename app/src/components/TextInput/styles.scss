@@ -2,13 +2,8 @@
   border: none;
   border-radius: 4px;
 
-  background: var(--dark-blue);
+  background: var(--secondary-background-color);
   min-width: 360px;
-
-  @media (prefers-color-scheme: light) {
-    // In my perception keep media queries at the end of the files and prevent repetition is best. BEARS BETS BATTLE START GALACTICA
-    background: var(--light-gray);
-  }
 
   &__container {
     padding: 1rem 2rem;
@@ -19,10 +14,6 @@
   &__left-icon {
     width: 24px;
     fill: var(--white);
-
-    @media (prefers-color-scheme: light) {
-      fill: var(--darker-blue);
-    }
   }
 
   &__input-field {
@@ -31,21 +22,14 @@
     width: 100%;
     padding: 0;
 
-    color: var(
-      --white
-    ); // I like to keep defaults in  the global css. Like, it prevents of addind css properties again and again when you need to create new input components.
-
-    @media (prefers-color-scheme: light) {
-      // like, why? if you can have everything in one place? huh CHANGE MY MIND IS ALLOWED
-      color: var(--darker-blue);
-    }
+    color: var(--primary-text-color);
 
     &:focus {
       outline: none;
     }
 
     &::placeholder {
-      color: var(--white);
+      color: var(--secondary-text-color);
     }
   }
 }

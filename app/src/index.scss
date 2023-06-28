@@ -14,6 +14,18 @@
 
   --primary-font-size: 14px;
   --secondary-font-size: 16px;
+
+  --primary-background-color: var(--very-dark-blue);
+  --secondary-background-color: var(--dark-blue);
+  --primary-text-color: var(--white);
+  --secondary-text-color: var(--light-gray);
+
+  @media (prefers-color-scheme: light) {
+    --primary-background-color: var(--light-gray);
+    --secondary-background-color: var(--white);
+    --primary-text-color: var(--darker-blue);
+    --secondary-text-color: var(--very-dark-blue);
+  }
 }
 
 body {
