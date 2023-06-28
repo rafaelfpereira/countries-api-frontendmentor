@@ -11,10 +11,17 @@
 
   &__container {
     padding: 1rem 2rem;
+    display: flex;
+    gap: 1rem;
   }
 
   &__left-icon {
-    width: 32px;
+    width: 24px;
+    fill: var(--white);
+
+    @media (prefers-color-scheme: light) {
+      fill: var(--darker-blue);
+    }
   }
 
   &__input-field {

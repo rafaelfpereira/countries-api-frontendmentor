@@ -20,7 +20,7 @@ const SelectInput = ({
           key={`${index}${option.value}`}
           className="select-input__option"
           value={option.value}
-          selected={selectedOption === option.value}
+          // selected={selectedOption === option.value}
         >
           {option.label}
         </option>

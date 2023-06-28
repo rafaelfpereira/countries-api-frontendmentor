@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { CountryCard, TextInput, SelectInput } from "./components";
+import data from "./mocks/data.json";
 import "./App.scss";
 
 const mockSelectOptions = [
@@ -13,6 +14,7 @@ const mockSelectOptions = [
 function App() {
   const [filter, setFilter] = useState("");
   const [selectedOption, setSelectedOption] = useState("");
+  console.log(data);
 
   return (
     <main className="App">
@@ -37,27 +39,16 @@ function App() {
       </section>
 
       <section className="content">
-        <CountryCard
-          name="Germany"
-          population={81770900}
-          region="Europe"
-          capital="Berlin"
-          flagUrl={"https://flagcdn.com/de.svg"}
-        />
-        <CountryCard
-          name="Germany"
-          population={81770900}
-          region="Europe"
-          capital="Berlin"
-          flagUrl={"https://flagcdn.com/br.svg"}
-        />
-        <CountryCard
-          name="Germany"
-          population={81770900}
-          region="Europe"
-          capital="Berlin"
-          flagUrl={"https://flagcdn.com/pt.svg"}
-        />
+        {data.map((country) => (
+          <CountryCard
+            key={country.alpha3Code}
+            name={country.name}
+            population={country.population}
+            region={country.region}
+            capital={country.capital}
+            flagUrl={`https://flagcdn.com/${country.alpha2Code.toLowerCase()}.svg`}
+          />
+        ))}
       </section>
     </main>
   );
