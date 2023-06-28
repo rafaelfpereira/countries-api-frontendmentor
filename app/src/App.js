@@ -1,7 +1,10 @@
+// Good job here. Keep imports organized in the same order helps to find thigs easier when we have too much imports
+// React imports > components > styles > types
 import { useState } from "react";
 import { CountryCard, TextInput, SelectInput } from "./components";
 import "./App.scss";
 
+// ok for now but I always recomend separating the mock data in a separated file.
 const mockSelectOptions = [
   { value: "Africa", label: "Africa" },
   { value: "America", label: "America" },
@@ -37,6 +40,7 @@ function App() {
       </section>
 
       <section className="content">
+        {/* I would start creating a map function here already */}
         <CountryCard
           name="Germany"
           population={81770900}
