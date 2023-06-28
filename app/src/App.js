@@ -1,38 +1,46 @@
 // Good job here. Keep imports organized in the same order helps to find thigs easier when we have too much imports
 // React imports > components > styles > types
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { CountryCard, TextInput, SelectInput, Icon } from "./components";
-
-import data from "./mocks/data.json";
 import "./App.scss";
 
-// ok for now but I always recomend separating the mock data in a separated file.
-const mockSelectOptions = [
-  { value: "Africa", label: "Africa" },
-  { value: "America", label: "America" },
-  { value: "Asia", label: "Asia" },
-  { value: "Europe", label: "Europe" },
-  { value: "Oceania", label: "Oceania" },
-];
+const uiMode = {
+  light: {
+    icon: "sun",
+    label: "Light Mode",
+  },
+  dark: {
+    icon: "moon",
+    label: "Dark Mode",
+  },
+};
 
 function App() {
-  const [filter, setFilter] = useState("");
-  const [selectedOption, setSelectedOption] = useState("");
   const [mode, setMode] = useState("dark");
+  const [countryData, setCountryData] = useState([]);
+  const [availableRegionFilters, setAvailableRegionFilters] = useState([]);
+  const [selectedOption, setSelectedOption] = useState("");
+  const [countryNameFilter, setCountryNameFilter] = useState("");
 
-  const uiMode = {
-    light: {
-      icon: "sun",
-      label: "Light Mode",
-    },
-    dark: {
-      icon: "moon",
-      label: "Dark Mode",
-    },
+  const toggleTheme = () => {
+    if (mode === "dark") {
+      localStorage.setItem("theme", "light");
+      setMode("light");
+    } else {
+      localStorage.setItem("theme", "dark");
+      setMode("dark");
+    }
+  };
+
+  const fetchCountryData = () => {
+    fetch("https://restcountries.com/v3.1/all")
+      .then((response) => response.json())
+      .then((data) => setCountryData(data));
   };
 
   useEffect(() => {
     // data fetching
+    fetchCountryData();
 
     // theme logic
     if (localStorage.getItem("theme")) {
@@ -47,21 +55,31 @@ function App() {
   }, []);
 
   useEffect(() => {
-    console.log({ mode });
+    if (countryData.length > 0) {
+      const regions = countryData.map((country) => country.region);
+
+      const uniqueRegions = regions.filter(
+        (region, index) => regions.indexOf(region) === index
+      );
+
+      setAvailableRegionFilters(
+        uniqueRegions.map((region) => ({ value: region, label: region }))
+      );
+    }
+  }, [countryData]);
+
+  useEffect(() => {
     document.documentElement.setAttribute("data-theme", mode);
   }, [mode]);
 
-  const toggleTheme = () => {
-    if (mode === "dark") {
-      localStorage.setItem("theme", "light");
-      setMode("light");
-    } else {
-      localStorage.setItem("theme", "dark");
-      setMode("dark");
-    }
+  const filteredData = countryData.filter((country) => {
+    const matchesName = country.name.common
+      .toLowerCase()
+      .includes(countryNameFilter.toLowerCase());
 
-    console.log(localStorage.getItem("theme"));
-  };
+    const matchesRegion = country.region === selectedOption || !selectedOption;
+    return matchesName && matchesRegion;
+  });
 
   return (
     <main className="App">
@@ -79,13 +97,13 @@ function App() {
 
       <section className="filter">
         <TextInput
-          value={filter}
-          onChange={(e) => setFilter(e.target.value)}
+          value={countryNameFilter}
+          onChange={(e) => setCountryNameFilter(e.target.value)}
           placeholder="Search for a country..."
           leftIcon="magnifying-glass"
         />
         <SelectInput
-          options={mockSelectOptions}
+          options={availableRegionFilters}
           defaultValue={"Filter by Region"}
           selectedOption={selectedOption}
           onChange={(e) => setSelectedOption(e.target.value)}
@@ -93,16 +111,18 @@ function App() {
       </section>
 
       <section className="content">
-        {data.map((country) => (
-          <CountryCard
-            key={country.alpha3Code}
-            name={country.name}
-            population={country.population}
-            region={country.region}
-            capital={country.capital}
-            flagUrl={`https://flagcdn.com/${country.alpha2Code.toLowerCase()}.svg`}
-          />
-        ))}
+        {filteredData.length > 0
+          ? filteredData.map((country) => (
+              <CountryCard
+                key={country?.cca3}
+                name={country?.name?.common}
+                population={country?.population}
+                region={country?.region}
+                capital={country?.capital}
+                flagUrl={country?.flags["svg"]}
+              />
+            ))
+          : "nada aqui"}
       </section>
     </main>
   );

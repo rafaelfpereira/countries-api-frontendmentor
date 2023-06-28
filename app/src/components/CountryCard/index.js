@@ -12,7 +12,7 @@ const CountryCard = ({ name, population, region, capital, flagUrl }) => (
       <h4 className="country-card__country-name">{name}</h4>
       <div className="country-card__country-info">
         <span>Population: </span>
-        {population}
+        {population.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
       </div>
       <div className="country-card__country-info">
         <span>Region: </span>

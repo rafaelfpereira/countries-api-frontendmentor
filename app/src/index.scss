@@ -21,14 +21,6 @@
   --secondary-text-color: var(--light-gray);
   --tertiary-text-color: var(var(--dark-gray));
 
-  // @media (prefers-color-scheme: light) {
-  //   --primary-background-color: var(--light-gray);
-  //   --secondary-background-color: var(--white);
-  //   --primary-text-color: var(--darker-blue);
-  //   --secondary-text-color: var(--very-dark-blue);
-  //   --tertiary-text-color: var(var(--dark-blue));
-  // }
-
   // light theme
   &[data-theme="light"] {
     --primary-background-color: var(--light-gray);
