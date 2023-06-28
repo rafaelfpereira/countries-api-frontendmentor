@@ -5,6 +5,11 @@
   background: var(--very-dark-blue);
   color: var(--white);
 
+  @media (prefers-color-scheme: light) {
+    background: var(--light-gray);
+    color: var(--darker-blue);
+  }
+
   header {
     display: flex;
     justify-content: space-between;

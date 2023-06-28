@@ -27,5 +27,9 @@
   &__country-info {
     margin-block: 0.2rem;
     font-size: var(--primary-font-size);
+
+    span {
+      font-weight: 600;
+    }
   }
 }

@@ -1,0 +1,40 @@
+.text-input {
+  border: none;
+  border-radius: 4px;
+
+  background: var(--dark-blue);
+  min-width: 360px;
+
+  @media (prefers-color-scheme: light) {
+    background: var(--light-gray);
+  }
+
+  &__container {
+    padding: 1rem 2rem;
+  }
+
+  &__left-icon {
+    width: 32px;
+  }
+
+  &__input-field {
+    background: transparent;
+    border: none;
+    width: 100%;
+    padding: 0;
+
+    color: var(--white);
+
+    @media (prefers-color-scheme: light) {
+      color: var(--darker-blue);
+    }
+
+    &:focus {
+      outline: none;
+    }
+
+    &::placeholder {
+      color: var(--white);
+    }
+  }
+}

@@ -10,15 +10,18 @@ const CountryCard = ({ name, population, region, capital, flagUrl }) => (
     />
     <div className="country-card__data-container">
       <h4 className="country-card__country-name">{name}</h4>
-      <span className="country-card__country-info">
-        Population: {population}
-      </span>
-      <span className="country-card__country-info">
-        Region: {region}
-      </span>
-      <span className="country-card__country-info">
-        Capital: {capital}
-      </span>
+      <div className="country-card__country-info">
+        <span>Population: </span>
+        {population}
+      </div>
+      <div className="country-card__country-info">
+        <span>Region: </span>
+        {region}
+      </div>
+      <div className="country-card__country-info">
+        <span>Capital: </span>
+        {capital}
+      </div>
     </div>
   </div>
 );

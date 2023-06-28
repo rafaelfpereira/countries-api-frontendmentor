@@ -1,8 +1,19 @@
+import { useState } from "react";
+import { CountryCard, TextInput, SelectInput } from "./components";
 import "./App.scss";
 
-import { CountryCard } from "./components";
+const mockSelectOptions = [
+  { value: "Africa", label: "Africa" },
+  { value: "America", label: "America" },
+  { value: "Asia", label: "Asia" },
+  { value: "Europe", label: "Europe" },
+  { value: "Oceania", label: "Oceania" },
+];
 
 function App() {
+  const [filter, setFilter] = useState("");
+  const [selectedOption, setSelectedOption] = useState("");
+
   return (
     <main className="App">
       <header>
@@ -11,17 +22,18 @@ function App() {
       </header>
 
       <section className="filter">
-        <input type="text" />
-        <select>
-          <option selected disabled>
-            Filter by Region
-          </option>
-          <option value="Africa">Africa</option>
-          <option value="America">America</option>
-          <option value="Asia">Asia</option>
-          <option value="Europe">Europe</option>
-          <option value="Oceania">Oceania</option>
-        </select>
+        <TextInput
+          value={filter}
+          onChange={(e) => setFilter(e.target.value)}
+          placeholder="Search for a country..."
+          leftIcon="/icons/magnifying-glass.svg"
+        />
+        <SelectInput
+          options={mockSelectOptions}
+          defaultValue={"Filter by Region"}
+          selectedOption={selectedOption}
+          onChange={(e) => setSelectedOption(e.target.value)}
+        />
       </section>
 
       <section className="content">

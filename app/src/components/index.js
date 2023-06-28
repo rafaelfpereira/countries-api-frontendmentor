@@ -1,3 +1,5 @@
 import CountryCard from "./CountryCard";
+import TextInput from "./TextInput";
+import SelectInput from "./SelectInput";
 
-export { CountryCard };
+export { CountryCard, TextInput, SelectInput };
