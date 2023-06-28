@@ -17,7 +17,7 @@ const SelectInput = ({
       </option>
       {options.map((option, index) => (
         <option
-          key={`${index}${option.value}`}
+          key={`${index}${option.value}`} // that's perfect, defining the key as unique here is super performatic.
           className="select-input__option"
           value={option.value}
           selected={selectedOption === option.value}
