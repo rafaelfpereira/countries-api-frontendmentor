@@ -1,6 +1,6 @@
 // Good job here. Keep imports organized in the same order helps to find thigs easier when we have too much imports
 // React imports > components > styles > types
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect } from "react";
 import { CountryCard, TextInput, SelectInput, Icon } from "./components";
 import "./App.scss";
 
@@ -122,7 +122,7 @@ function App() {
                 flagUrl={country?.flags["svg"]}
               />
             ))
-          : "nada aqui"}
+          : "There's Nothing Here"}
       </section>
     </main>
   );
