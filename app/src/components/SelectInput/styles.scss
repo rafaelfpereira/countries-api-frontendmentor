@@ -6,6 +6,36 @@
   color: var(--primary-text-color);
 
   &__container {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    width: 200px;
+  }
+
+  &__option {
     padding: 1rem 2rem;
+    text-align: center;
+    cursor: pointer;
+  }
+
+  &__options-container {
+    background: var(--secondary-background-color);
+    position: absolute;
+    width: 100%;
+    border-radius: 4px;
+    overflow: hidden;
+
+    display: none;
+    top: 3.5rem;
+
+    &--open {
+      display: block;
+    }
+
+    .select-input__option {
+      &:hover {
+        background: var(--primary-background-color);
+      }
+    }
   }
 }

@@ -104,9 +104,8 @@ function App() {
         />
         <SelectInput
           options={availableRegionFilters}
-          defaultValue={"Filter by Region"}
           selectedOption={selectedOption}
-          onChange={(e) => setSelectedOption(e.target.value)}
+          onChange={(option) => setSelectedOption(option)}
         />
       </section>
 
